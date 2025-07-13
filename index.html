@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Biodata Builder</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- html2pdf CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    .font-sans { font-family: 'Inter', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-mono { font-family: monospace; }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans p-6">
+  <div class="max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-10" data-aos="fade-down">
+      <h1 class="text-4xl font-extrabold text-blue-700">Advanced Biodata Builder</h1>
+      <p class="mt-2 text-gray-600 text-lg">Customize, Preview & Download Your Resume Instantly</p>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex flex-wrap gap-4 items-center mb-6" data-aos="fade-up">
+      <div>
+        <label class="block text-sm font-semibold">Font:</label>
+        <select id="fontSelector" onchange="changeFont()" class="p-2 border rounded">
+          <option value="font-sans">Sans</option>
+          <option value="font-serif">Serif</option>
+          <option value="font-mono">Mono</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold">Font Color:</label>
+        <input type="color" id="fontColorPicker" onchange="changeFontColor()" class="w-10 h-10 border rounded" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold">Theme:</label>
+        <div class="flex gap-2">
+          <button onclick="setTheme('light')" class="bg-gray-100 border px-3 py-1 rounded">Light</button>
+          <button onclick="setTheme('dark')" class="bg-gray-800 text-white px-3 py-1 rounded">Dark</button>
+          <button onclick="setTheme('blue')" class="bg-blue-600 text-white px-3 py-1 rounded">Blue</button>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold">Template:</label>
+        <select id="templateSelector" onchange="switchTemplate()" class="p-2 border rounded">
+          <option value="1">Classic</option>
+          <option value="2">Modern</option>
+          <option value="3">Minimal</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Form + Preview -->
+    <div class="grid md:grid-cols-2 gap-6" data-aos="fade-up">
+      <!-- Form -->
+      <div class="bg-white shadow-md rounded-lg p-6 space-y-4">
+        <input id="name" class="w-full p-3 border rounded" placeholder="Full Name" />
+        <input id="email" class="w-full p-3 border rounded" placeholder="Email" />
+        <input id="phone" class="w-full p-3 border rounded" placeholder="Phone Number" />
+        <input id="address" class="w-full p-3 border rounded" placeholder="Address" />
+        <textarea id="summary" class="w-full p-3 border rounded" rows="2" placeholder="Summary / Objective"></textarea>
+        <input id="education" class="w-full p-3 border rounded" placeholder="Education" />
+        <textarea id="experience" class="w-full p-3 border rounded" rows="2" placeholder="Work Experience"></textarea>
+        <textarea id="skills" class="w-full p-3 border rounded" rows="2" placeholder="Skills (comma-separated)"></textarea>
+        <textarea id="certifications" class="w-full p-3 border rounded" rows="2" placeholder="Certifications"></textarea>
+        <textarea id="projects" class="w-full p-3 border rounded" rows="3" placeholder="Projects"></textarea>
+        <div class="flex gap-3 pt-2">
+          <button onclick="generateBiodata()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">Generate</button>
+          <button onclick="downloadPDF()" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded">Download PDF</button>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div id="biodataPreview" class="font-sans bg-white p-6 rounded shadow space-y-4 text-gray-800" data-aos="zoom-in">
+        <p class="text-gray-400">Your biodata here...</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-gray-500 text-sm">
+      &copy; 2025 | Built by moxx using HTML, Tailwind, and JS
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
